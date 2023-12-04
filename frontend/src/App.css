@@ -1,0 +1,9 @@
+/* App.css */
+.home-image {
+    max-width: 100%;
+    /* Limit the image width to the container width */
+    max-height: 300px;
+    /* Set a maximum height for the images */
+    height: auto;
+    /* Maintain aspect ratio */
+}
