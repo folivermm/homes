@@ -14,8 +14,6 @@ knex.migrate
     .catch(console.error);
 
 
-
-
 // const app = require("./app");
 // const knex = require("./db/connection");
 
