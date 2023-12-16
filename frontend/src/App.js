@@ -57,27 +57,30 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomeList from './components/HomeList';
 import HomeDetails from './components/HomeDetails';
 import AddHomeForm from './components/AddHomeForm'; // Import the AddHomeForm component
-import { listHomes, getHomeWithRealtor } from './utils/api';
+import { listHomes, listRealtors, getHomeWithRealtor } from './utils/api';
 
 function App() {
   const [homes, setHomes] = useState([]);
+  const [realtors, setRealtors] = useState([]); // Add a state variable for realtors
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchHomes() {
+    async function fetchData() {
       try {
         const fetchedHomes = await listHomes();
+        const fetchedRealtors = await listRealtors(); // Fetch the list of realtors
         setHomes(fetchedHomes);
+        setRealtors(fetchedRealtors); // Set the list of realtors in state
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching homes:', error);
+        console.error('Error fetching data:', error);
         setError(error);
         setLoading(false);
       }
     }
 
-    fetchHomes();
+    fetchData();
   }, []);
 
   const handleHomeAdded = (newHome) => {
@@ -91,20 +94,19 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              loading ? (
-                <div>Loading...</div>
-              ) : error ? (
-                <div>Error: {error.message}</div>
-              ) : (
-                <>
-                  <HomeList homes={homes} onHomeAdded={handleHomeAdded} />
-                </>
-              )
+            element={loading ? (
+              <div>Loading...</div>
+            ) : error ? (
+              <div>Error: {error.message}</div>
+            ) : (
+              <>
+                <HomeList homes={homes} onHomeAdded={handleHomeAdded} />
+              </>
+            )
             }
           />
           <Route path="/:id" element={<HomeDetails getHome={getHomeWithRealtor} />} />
-          <Route path="/add" element={<AddHomeForm onHomeAdded={handleHomeAdded} />} />
+          <Route path="/add" element={<AddHomeForm onHomeAdded={handleHomeAdded} realtors={realtors} />} />
         </Routes>
       </div>
     </Router>

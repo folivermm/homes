@@ -12,7 +12,7 @@ exports.seed = function (knex) {
           "company": "JASPER",
           "email": "romero.soto@jasper.net",
           "phone": "+1 (963) 406-2309",
-          "home_id": 1
+          // "home_id": 1
         },
         {
           // "id": 20,
@@ -22,7 +22,7 @@ exports.seed = function (knex) {
           "company": "NATIONS",
           "email": "sanford.huffman@nations.co.uk",
           "phone": "+1 (903) 479-2360",
-          "home_id": 2
+          // "home_id": 2
         },
         {
           // "id": 30,
@@ -32,7 +32,7 @@ exports.seed = function (knex) {
           "company": "MAXEMIA",
           "email": "rowe.roman@maxemia.me",
           "phone": "+1 (862) 498-2158",
-          "home_id": 3
+          // "home_id": 3
         },
         {
           // "id": 40,
@@ -42,7 +42,7 @@ exports.seed = function (knex) {
           "company": "ZANYMAX",
           "email": "beulah.mcintosh@zanymax.name",
           "phone": "+1 (903) 542-3708",
-          "home_id": 4
+          // "home_id": 4
         },
         {
           // "id": 50,
@@ -52,7 +52,7 @@ exports.seed = function (knex) {
           "company": "ARCHITAX",
           "email": "beard.chase@architax.info",
           "phone": "+1 (916) 507-2595",
-          "home_id": 5
+          // "home_id": 5
         },
         {
           // "id": 60,
@@ -62,7 +62,7 @@ exports.seed = function (knex) {
           "company": "KONNECT",
           "email": "richards.campos@konnect.us",
           "phone": "+1 (840) 418-2947",
-          "home_id": 6
+          // "home_id": 6
         },
         {
           // "id": 70,
@@ -72,7 +72,7 @@ exports.seed = function (knex) {
           "company": "SNORUS",
           "email": "brandy.rivas@snorus.com",
           "phone": "+1 (985) 557-2964",
-          "home_id": 7
+          // "home_id": 7
         },
         {
           // "id": 80,
@@ -82,7 +82,7 @@ exports.seed = function (knex) {
           "company": "HOMETOWN",
           "email": "fulton.atkinson@hometown.biz",
           "phone": "+1 (829) 443-2323",
-          "home_id": 8
+          // "home_id": 8
         }
       ]);
     });

@@ -87,6 +87,15 @@ export function createHome(home) {
     return fetchJson(url, options);
 }
 
+/**
+ * GET request to retrieve a list of realtors
+ * @returns {Promise<Array>} - A promise that resolves to an array of realtor objects.
+ */
+export function listRealtors() {
+    const url = `${API_BASE_URL}/realtors`;
+    return fetchJson(url, { headers });
+}
+
 // /**
 //  * PUT request to update a home by ID
 //  * @param {string} id - The ID of the home to update.

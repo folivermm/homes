@@ -9,7 +9,7 @@ const cors = require("cors");
 const errorHandler = require("./errors/errorHandler");
 const notFound = require("./errors/notFound");
 const HomesRouter = require("./homes/homes.router");
-
+const RealtorsRouter = require("./realtors/realtors.router");
 const app = express();
 
 app.use(cors());
@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(morgan('combined'));
 
 app.use("/homes", HomesRouter);
+app.use("/realtors", RealtorsRouter);
 
 app.use(notFound);
 app.use(errorHandler);

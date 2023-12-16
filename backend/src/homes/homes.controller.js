@@ -30,9 +30,14 @@ async function create(req, res) {
     res.status(201).json({ data: newHome });
 }
 
+
+
+
 module.exports = {
     list: asyncErrorBoundary(list),
     read: asyncErrorBoundary(read),
     homeExists: asyncErrorBoundary(homeExists), // Include the homeExists middleware
-    create: asyncErrorBoundary(create)
+    create: asyncErrorBoundary(create),
 };
+
+

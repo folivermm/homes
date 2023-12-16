@@ -9,17 +9,20 @@ function list() {
 function readHomeWithRealtor(id) {
     return knex('homes as h')
         .select(
+            'h.id',
             'h.price',
+            'h.image_url',
             'h.address',
-            'h.registered',
             'h.about',
-            'r.image_url',
+            'h.registered',
+            'r.id as realtor_id',
             'r.first_name',
             'r.last_name',
             'r.email',
-            'r.phone'
+            'r.phone',
+            'r.image_url as realtor_image_url'
         )
-        .leftJoin('realtors as r', 'h.id', 'r.home_id')
+        .leftJoin('realtors as r', 'h.realtor_id', 'r.id')
         .where('h.id', id)
         .then((homeWithRealtor) => {
             if (!homeWithRealtor.length) {
@@ -29,15 +32,49 @@ function readHomeWithRealtor(id) {
         });
 }
 
+// function create(homeData) {
+//     return knex('homes')
+//         .insert(homeData)
+//         .returning('*')
+//         .then((createdHomes) => createdHomes[0]);
+// }
+
 function create(homeData) {
-    return knex('homes')
-        .insert(homeData)
-        .returning('*')
-        .then((createdHomes) => createdHomes[0]);
+    return knex.transaction(async (trx) => {
+        try {
+            // Check if the provided 'realtor_id' exists in the 'realtors' table
+            const realtorExists = await trx("realtors")
+                .where("id", homeData.realtor_id)
+                .first();
+
+            if (!realtorExists) {
+                throw new Error(`Realtor with ID ${homeData.realtor_id} not found`);
+            }
+
+            // Insert home data into the 'homes' table
+            const [homeId] = await trx("homes")
+                .insert(homeData)
+                .returning("id");
+
+            // Retrieve the created home data
+            const createdHome = await trx("homes")
+                .select("*")
+                .where("id", homeId)
+                .first();
+
+            return createdHome;
+        } catch (error) {
+            throw error;
+        }
+    });
 }
+
+
 
 module.exports = {
     list,
     readHomeWithRealtor,
-    create
+    create,
 };
+
+

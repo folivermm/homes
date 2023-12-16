@@ -7,13 +7,6 @@ exports.up = function (knex) {
         table.string("email");
         table.string("phone");
         table.string("image_url");
-        table
-            .integer("home_id")
-            .unsigned()
-            .references("id")
-            .inTable("homes")
-            .onDelete("CASCADE") // Optional: Define the onDelete behavior
-            .onUpdate("CASCADE"); // Optional: Define the onUpdate behavior
     });
 };
 
