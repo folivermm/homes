@@ -1,5 +1,5 @@
 {
-  "name": "homes",
+  "name": "homes-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
