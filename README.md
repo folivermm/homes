@@ -1,8 +1,7 @@
-
 ```
 homes
-├─ .gitignore
 ├─ backend
+│  ├─ .env
 │  ├─ knexfile.js
 │  ├─ package-lock.json
 │  ├─ package.json
@@ -11,11 +10,11 @@ homes
 │     ├─ db
 │     │  ├─ connection.js
 │     │  ├─ migrations
-│     │  │  ├─ 20231129115259_homes.js
-│     │  │  └─ 20231129161620_realtors.js
+│     │  │  ├─ 20231129115258_realtors.js
+│     │  │  └─ 20231129115259_homes.js
 │     │  └─ seeds
-│     │     ├─ realtors.js
-│     │     └─ seed_homes.js
+│     │     ├─ 01_realtors.js
+│     │     └─ 02_homes.js
 │     ├─ errors
 │     │  ├─ asyncErrorBoundary.js
 │     │  ├─ errorHandler.js
@@ -25,8 +24,20 @@ homes
 │     │  ├─ homes.controller.js
 │     │  ├─ homes.router.js
 │     │  └─ homes.service.js
+│     ├─ realtors
+│     │  ├─ realtors.controller.js
+│     │  ├─ realtors.router.js
+│     │  └─ realtors.service.js
 │     └─ server.js
 ├─ frontend
+│  ├─ build
+│  │  ├─ asset-manifest.json
+│  │  ├─ index.html
+│  │  └─ static
+│  │     └─ js
+│  │        ├─ main.f655c322.js
+│  │        ├─ main.f655c322.js.LICENSE.txt
+│  │        └─ main.f655c322.js.map
 │  ├─ package-lock.json
 │  ├─ package.json
 │  ├─ public
