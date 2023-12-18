@@ -1,0 +1,33 @@
+.add-home-form {
+    max-width: 400px;
+    /* Adjust the form width as needed */
+    margin: 0;
+    /* Remove margin to align the form to the left */
+    padding: 20px;
+    /* Add some padding to the form */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    /* Add spacing between form fields */
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

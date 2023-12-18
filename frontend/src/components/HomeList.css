@@ -1,0 +1,108 @@
+.home-listings-header {
+    text-align: left;
+    font-size: 36px;
+    font-weight: bold;
+    color: #1b1950;
+    /* Text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    /* Add a subtle text shadow */
+    margin-bottom: 30px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    /* Vertically center the buttons */
+    margin-top: 20px;
+    /* Add spacing between the header and buttons */
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    margin-right: 10px;
+    /* Add spacing between buttons */
+    padding: 10px 20px;
+    /* Adjust padding as needed */
+    background-color: #6239d3;
+    /* Button background color */
+    color: #fff;
+    /* Text color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Smooth hover transition */
+}
+
+.button-container button:hover {
+    background-color: #0771e2;
+    /* Hover background color */
+}
+
+.homes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* Distribute items evenly, creating 3 per row */
+}
+
+.home {
+    display: flex;
+    /* Add display: flex to arrange the image and text elements horizontally */
+    flex-direction: column;
+    /* Stack the text elements vertically */
+    flex: 0 0 calc(25% - 10px);
+    /* Adjust as needed for 3 homes per row */
+    margin-bottom: 20px;
+    text-align: center;
+    /* Remove the border */
+    /* border: 1px solid #ccc; */
+    padding: 10px;
+}
+
+/* Remove margin and padding for specific elements */
+.home a,
+.home p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the image separately */
+.home img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style the text elements to the right of the image */
+.home .text-container {
+    margin-top: 10px;
+    /* Adjust as needed for spacing */
+    text-align: left;
+    /* Align text to the left */
+}
+
+.link-button {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #007BFF;
+    /* Link color */
+}
+
+.link-button:hover {
+    color: #0056b3;
+    /* Hover color */
+}
+
+.home-key {
+    font-weight: bold;
+    /* Make the key elements bold */
+    margin-right: 5px;
+    /* Add spacing between key and value */
+}
+
+/* 
+.home-value {
+} */

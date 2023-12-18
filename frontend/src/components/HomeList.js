@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SortHomes from './SortHomes';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../utils/api';
+import './HomeList.css';
 
 function HomeList({ homes }) {
     const [sortedHomes, setSortedHomes] = useState([...homes]);
@@ -32,22 +33,42 @@ function HomeList({ homes }) {
     // console.log('Sorted Homes:', sortedHomes);
     return (
         <div>
-            <SortHomes onSort={handleSort} />
-            <button onClick={handleAddHomeClick}>Add Home</button>
-            {sortedHomes.map((home) => (
-                <div key={home.id} data-testid="home" style={{ marginBottom: '20px', display: 'flex', flexDirection: 'column' }}>
-                    <img
-                        src={home.image_url}
-                        alt={`Home ${home.id}`}
-                        data-testid="home-image"
-                        style={{ maxWidth: '300px', maxHeight: '150px' }}
-                    />
-                    <Link to={`/${home.id}`}>View Details</Link>
-                    <p data-testid="home-price" style={{ margin: '0' }}>Price: {home.price}</p>
-                    <p data-testid="home-address" style={{ margin: '0' }}>Address: {home.address}</p>
-                    <p data-testid="home-registered" style={{ margin: '0' }}>Registration Date: {formatRegistrationDate(home.registered)}</p>
-                </div>
-            ))}
+            <div className="home-listings-header">Home Listings</div>
+            <div className="button-container">
+                <SortHomes onSort={handleSort} />
+                <button
+                    onClick={handleAddHomeClick}
+                    style={{ backgroundColor: 'green', color: '#fff' }} // Change the background color and text color
+                >
+                    Add Home
+                </button>
+            </div>
+            <div className="homes-container">
+                {sortedHomes.map((home) => (
+                    <div key={home.id} className="home" data-testid="home">
+                        <img
+                            src={home.image_url}
+                            alt={`Home ${home.id}`}
+                            className="home-image"
+                        />
+                        <div className="text-container">
+                            <Link to={`/${home.id}`} className="link-button">View Details</Link>
+                            <p>
+                                <span className="home-key">Price:</span>
+                                <span className="home-value">{home.price}</span>
+                            </p>
+                            <p>
+                                <span className="home-key">Address:</span>
+                                <span className="home-value">{home.address}</span>
+                            </p>
+                            <p>
+                                <span className="home-key">Registration Date:</span>
+                                <span className="home-value">{formatRegistrationDate(home.registered)}</span>
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

@@ -16,31 +16,3 @@ function SortHomes({ onSort }) {
 }
 
 export default SortHomes;
-
-
-// // src/components/SortHomes.js
-// import React from 'react';
-
-// function SortHomes({ sortByPrice, sortByDate }) {
-//     return (
-//         <div>
-//             <button onClick={sortByPrice}>Sort by Price</button>
-//             <button onClick={sortByDate}>Sort by Date</button>
-//         </div>
-//     );
-// }
-
-// export default SortHomes;
-// SortHomes.js (or wherever the buttons are defined)
-// import React from 'react';
-
-// function SortHomes({ sortByPrice, sortByDate }) {
-//     return (
-//         <div>
-//             <button onClick={sortByPrice}>Sort by Price</button>
-//             <button onClick={sortByDate}>Sort by Date</button>
-//         </div>
-//     );
-// }
-
-// export default SortHomes;

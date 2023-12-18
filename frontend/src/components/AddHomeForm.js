@@ -1,49 +1,7 @@
-// import React, { useState } from 'react';
-// import { createHome } from '../utils/api';
-// import { useNavigate } from 'react-router-dom';
-
-// function AddHomeForm({ onHomeAdded }) {
-//     const navigate = useNavigate();
-//     const [newHome, setNewHome] = useState({
-//         price: '',
-//         image_url: '',
-//         address: '',
-//         about: '',
-//         registered: '',
-//     });
-
-//     const handleChange = (e) => {
-//         const { name, value } = e.target;
-//         setNewHome((prevHome) => ({
-//             ...prevHome,
-//             [name]: value,
-//         }));
-//     };
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-
-//         try {
-//             // Make an API request to create a new home
-//             const createdHome = await createHome(newHome);
-//             // Call the callback function to notify the parent component of the new home
-//             onHomeAdded(createdHome);
-//             // Clear the form
-//             setNewHome({
-//                 price: '',
-//                 image_url: '',
-//                 address: '',
-//                 about: '',
-//                 registered: '',
-//             });
-//             navigate('/');
-//         } catch (error) {
-//             console.error('Error creating home:', error);
-//         }
-//     };
 import React, { useState } from 'react';
 import { createHome } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
+import './AddHomeForm.css'; // Import your CSS file
 
 function AddHomeForm({ onHomeAdded, realtors }) {
     const navigate = useNavigate();
@@ -53,7 +11,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
         address: '',
         about: '',
         registered: '',
-        realtor_id: '', // Initialize realtor_id as an empty string
+        realtor_id: '',
     });
 
     const handleChange = (e) => {
@@ -88,63 +46,70 @@ function AddHomeForm({ onHomeAdded, realtors }) {
             console.error('Error creating home:', error);
         }
     };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <form onSubmit={handleSubmit} className="add-home-form">
+            {/* Apply CSS classes for styling */}
+            <div className="form-group">
                 <label htmlFor="price">Price:</label>
                 <input
                     type="text"
-                    id="price"
                     name="price"
+                    className="form-control"
+                    placeholder="Price"
                     value={newHome.price}
                     onChange={handleChange}
                     required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label htmlFor="image_url">Image URL:</label>
                 <input
                     type="text"
-                    id="image_url"
                     name="image_url"
+                    className="form-control"
+                    placeholder="Image URL"
                     value={newHome.image_url}
                     onChange={handleChange}
                     required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label htmlFor="address">Address:</label>
                 <input
                     type="text"
-                    id="address"
                     name="address"
+                    className="form-control"
+                    placeholder="Address"
                     value={newHome.address}
                     onChange={handleChange}
                     required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label htmlFor="about">About:</label>
                 <textarea
-                    id="about"
                     name="about"
+                    className="form-control"
+                    placeholder="About"
                     value={newHome.about}
                     onChange={handleChange}
                     required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label htmlFor="registered">Registered:</label>
                 <input
                     type="text"
-                    id="registered"
                     name="registered"
+                    className="form-control"
+                    placeholder="Registered"
                     value={newHome.registered}
                     onChange={handleChange}
                     required
                 />
             </div>
-            <div>
+            <div className="form-group">
                 <label htmlFor="realtor_id">Realtor:</label>
                 <select
                     id="realtor_id"
@@ -152,21 +117,21 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                     value={newHome.realtor_id}
                     onChange={handleChange}
                     required
+                    className="form-control"
                 >
                     <option value="">Select a Realtor</option>
                     {realtors.map((realtor) => (
                         <option key={realtor.id} value={realtor.id}>
-                            {console.log(realtor.id)}
-                            {realtor.id} {realtor.first_name} {realtor.last_name}
+                            {realtor.first_name} {realtor.last_name}
                         </option>
                     ))}
                 </select>
             </div>
-            <button type="submit">Add Home</button>
+            <button type="submit" className="btn btn-primary">
+                Add Home
+            </button>
         </form>
     );
 }
 
-
 export default AddHomeForm;
-
