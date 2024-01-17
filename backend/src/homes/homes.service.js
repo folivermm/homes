@@ -69,12 +69,42 @@ function create(homeData) {
     });
 }
 
+function update(id, updatedData) {
+    return knex.transaction(async (trx) => {
+        try {
+            // Check if the provided 'realtor_id' exists in the 'realtors' table
+            const realtorExists = await trx("realtors")
+                .where("id", updatedData.realtor_id)
+                .first();
+
+            if (!realtorExists) {
+                throw new Error(`Realtor with ID ${updatedData.realtor_id} not found`);
+            }
+
+            // Update home data in the 'homes' table
+            await trx("homes")
+                .where({ id: id })
+                .update(updatedData);
+
+            // Retrieve the updated home data
+            const updatedHome = await trx("homes")
+                .select("*")
+                .where({ id: id })
+                .first();
+
+            return updatedHome;
+        } catch (error) {
+            throw error;
+        }
+    });
+}
 
 
 module.exports = {
     list,
     readHomeWithRealtor,
     create,
+    update,
 };
 
 

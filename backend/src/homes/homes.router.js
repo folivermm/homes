@@ -14,11 +14,8 @@ router
 router
     .route("/:id")
     .get(controller.homeExists, controller.read) // Use the homeExists middleware here
+    .put(controller.update)
     .all(methodNotAllowed);
 
-// Route for listing realtors
-// router
-//     .route("/realtors")
-//     .get(controller.listRealtors); // Add this route to list realtors
 
 module.exports = router;

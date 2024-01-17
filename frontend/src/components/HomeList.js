@@ -3,8 +3,10 @@ import SortHomes from './SortHomes';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../utils/api';
 import './HomeList.css';
+import UpdateHomeForm from './UpdateHomeForm';
 
 function HomeList({ homes }) {
+    const [editingHomeId, setEditingHomeId] = useState(null);
     const [sortedHomes, setSortedHomes] = useState([...homes]);
     const navigate = useNavigate();
     const handleSort = ({ criteria, order }) => {
@@ -29,6 +31,21 @@ function HomeList({ homes }) {
     function formatRegistrationDate(dateString) {
         return formatDateTime(dateString);
     }
+
+    const handleEditClick = (homeId) => {
+        navigate(`/updateHome/${homeId}`);
+    };
+
+    const handleUpdate = (updatedHome) => {
+        // Update the list of homes with the updated data
+        setSortedHomes((prevHomes) =>
+            prevHomes.map((home) =>
+                home.id === updatedHome.id ? updatedHome : home
+            )
+        );
+        setEditingHomeId(null);
+    };
+
     // console.log('Homes Prop:', homes);
     // console.log('Sorted Homes:', sortedHomes);
     return (
@@ -38,7 +55,8 @@ function HomeList({ homes }) {
                 <SortHomes onSort={handleSort} />
                 <button
                     onClick={handleAddHomeClick}
-                    style={{ backgroundColor: 'green', color: '#fff' }} // Change the background color and text color
+                    className="add-home-button" // Add a CSS class for styling
+                    style={{ marginLeft: '1rem' }}
                 >
                     Add Home
                 </button>
@@ -65,6 +83,15 @@ function HomeList({ homes }) {
                                 <span className="home-key">Registration Date:</span>
                                 <span className="home-value">{formatRegistrationDate(home.registered)}</span>
                             </p>
+                            <button
+                                onClick={() => handleEditClick(home.id)}
+                                className="update-home-button"
+                            >
+                                Update
+                            </button>
+                            {editingHomeId === home.id && (
+                                <UpdateHomeForm home={home} onUpdate={handleUpdate} />
+                            )}
                         </div>
                     </div>
                 ))}
@@ -74,4 +101,3 @@ function HomeList({ homes }) {
 }
 
 export default HomeList;
-

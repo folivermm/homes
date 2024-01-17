@@ -96,21 +96,32 @@ export function listRealtors() {
     return fetchJson(url, { headers });
 }
 
-// /**
-//  * PUT request to update a home by ID
-//  * @param {string} id - The ID of the home to update.
-//  * @param {object} home - The updated home object.
-//  * @returns {Promise<object>} - A promise that resolves to the updated home object.
-//  */
-// export function updateHome(id, home) {
-//     const url = `${API_BASE_URL}/homes/${id}`;
-//     const options = {
-//         method: "PUT",
-//         headers,
-//         body: JSON.stringify(home),
-//     };
-//     return fetchJson(url, options);
-// }
+/**
+ * PUT request to update a home by ID
+ * @param {string} id - The ID of the home to update.
+ * @param {object} home - The updated home object.
+ * @returns {Promise<object>} - A promise that resolves to the updated home object.
+ */
+export function updateHome(id, home) {
+    const url = `${API_BASE_URL}/homes/${id}`;
+    const options = {
+        method: "PUT",
+        headers,
+        body: JSON.stringify(home),
+    };
+
+    return fetchJson(url, options)
+        .then((updatedHome) => {
+            // You can handle the updated home data here
+            console.log('Updated Home:', updatedHome);
+            return updatedHome;
+        })
+        .catch((error) => {
+            // Handle any errors that occur during the update process
+            console.error('Error updating home:', error);
+            throw error;
+        });
+}
 
 // /**
 //  * DELETE request to delete a home by ID

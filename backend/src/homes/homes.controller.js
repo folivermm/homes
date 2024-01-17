@@ -30,7 +30,12 @@ async function create(req, res) {
     res.status(201).json({ data: newHome });
 }
 
-
+async function update(req, res) {
+    const { id } = req.params;
+    const { body } = req;
+    const updatedHome = await service.update(id, body);
+    res.json({ data: updatedHome });
+}
 
 
 module.exports = {
@@ -38,6 +43,7 @@ module.exports = {
     read: asyncErrorBoundary(read),
     homeExists: asyncErrorBoundary(homeExists), // Include the homeExists middleware
     create: asyncErrorBoundary(create),
+    update: asyncErrorBoundary(update),
 };
 
 

@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
-import { createHome } from '../utils/api';
-import { useNavigate } from 'react-router-dom';
-import './AddHomeForm.css'; // Import your CSS file
+import React, { useState, useEffect } from 'react';
+import { updateHome } from '../utils/api';
+import { useParams, useNavigate } from 'react-router-dom';
+import './UpdateHomeForm.css'
 
-
-function AddHomeForm({ onHomeAdded, realtors }) {
+function UpdateHomeForm({ homes, realtors }) {
+    const { id } = useParams();
+    const [updatedHome, setUpdatedHome] = useState({});
+    console.log('Homes prop inside UpdateHomeForm:', homes);
     const navigate = useNavigate();
-    const [newHome, setNewHome] = useState({
-        price: '',
-        image_url: '',
-        address: '',
-        about: '',
-        registered: '',
-        realtor_id: '',
-    });
+
+
+    // Find the specific home to update based on the id from the route parameters
+    useEffect(() => {
+        console.log('Homes prop inside UpdateHomeForm:', homes)
+        const foundHome = homes.find((home) => home.id === parseInt(id));
+        console.log('After find:', foundHome);
+        if (foundHome) {
+            console.log('Found Home:', foundHome)
+            setUpdatedHome(foundHome);
+            console.log('Updated Home:', updatedHome); // Log the updatedHome after state update
+        }
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewHome((prevHome) => ({
+        setUpdatedHome((prevHome) => ({
             ...prevHome,
             [name]: value,
         }));
@@ -27,36 +34,23 @@ function AddHomeForm({ onHomeAdded, realtors }) {
         e.preventDefault();
 
         try {
-            // Check if a realtor is selected
-            if (!newHome.realtor_id) {
-                throw new Error('Realtor must be selected.');
-            }
-
-            const createdHome = await createHome(newHome);
-            onHomeAdded(createdHome);
-            setNewHome({
-                price: '',
-                image_url: '',
-                address: '',
-                about: '',
-                registered: '',
-                realtor_id: '', // Reset realtor_id after successful submission
-            });
+            await updateHome(id, updatedHome);
+            // console.log('Home updated successfully:', update); const update = 
             navigate('/');
+            setTimeout(() => {
+                window.location.reload();
+            }, 0);
         } catch (error) {
-            console.error('Error creating home:', error);
+            console.error('Error updating home:', error);
         }
     };
-
-
 
     const handleGoToHomePage = () => {
         navigate('/'); // Redirect to the home page
     };
 
-
     return (
-        <form onSubmit={handleSubmit} className="add-home-form">
+        <form onSubmit={handleSubmit} className="update-home-form">
             <div className="form-group">
                 <label htmlFor="price">Price:</label>
                 <input
@@ -64,7 +58,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                     name="price"
                     className="form-control"
                     placeholder="Price"
-                    value={newHome.price}
+                    value={updatedHome.price}
                     onChange={handleChange}
                     required
                 />
@@ -76,13 +70,11 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                     name="image_url"
                     className="form-control"
                     placeholder="Image URL"
-                    value={newHome.image_url}
+                    value={updatedHome.image_url}
                     onChange={handleChange}
                     required
                 />
-                {newHome.image_url && (
-                    <img src={newHome.image_url} alt="Home Image" style={{ maxWidth: '100%', height: 'auto' }} />
-                )}
+                <img src={updatedHome.image_url} alt="Home Image" style={{ maxWidth: '100%', height: 'auto' }} />
             </div>
             <div className="form-group">
                 <label htmlFor="address">Address:</label>
@@ -91,7 +83,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                     name="address"
                     className="form-control"
                     placeholder="Address"
-                    value={newHome.address}
+                    value={updatedHome.address}
                     onChange={handleChange}
                     required
                 />
@@ -102,7 +94,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                     name="about"
                     className="form-control"
                     placeholder="About"
-                    value={newHome.about}
+                    value={updatedHome.about}
                     onChange={handleChange}
                     required
                 />
@@ -114,7 +106,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                     name="registered"
                     className="form-control"
                     placeholder="Registered"
-                    value={newHome.registered}
+                    value={updatedHome.registered}
                     onChange={handleChange}
                     required
                 />
@@ -124,7 +116,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                 <select
                     id="realtor_id"
                     name="realtor_id"
-                    value={newHome.realtor_id}
+                    value={updatedHome.realtor_id}
                     onChange={handleChange}
                     required
                     className="form-control"
@@ -138,7 +130,7 @@ function AddHomeForm({ onHomeAdded, realtors }) {
                 </select>
             </div>
             <button type="submit" className="btn btn-primary">
-                Add Home
+                Update Home
             </button>
             <button onClick={handleGoToHomePage} className="btn btn-primary" style={{ margin: '1rem' }}>
                 Return Home
@@ -147,4 +139,4 @@ function AddHomeForm({ onHomeAdded, realtors }) {
     );
 }
 
-export default AddHomeForm;
+export default UpdateHomeForm;
