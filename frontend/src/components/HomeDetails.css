@@ -1,45 +1,45 @@
 .home-details-container {
-    max-width: 800px;
-    /* Adjust the max width as needed */
-    margin: 0 auto;
-    /* Center the container horizontally */
-    padding: 20px;
-    background-color: #f5f5f5;
-    /* Add a background color */
-    border: 1px solid #ddd;
-    /* Add a border */
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Add a box shadow for a card-like effect */
+  max-width: 800px;
+  /* Adjust the max width as needed */
+  margin: 0 auto;
+  /* Center the container horizontally */
+  padding: 20px;
+  background-color: #f5f5f5;
+  /* Add a background color */
+  border: 1px solid #ddd;
+  /* Add a border */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* Add a box shadow for a card-like effect */
 }
 
 .home-details-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .home-details-image {
-    max-width: 50%;
-    height: auto;
-    margin-bottom: 20px;
+  max-width: 50%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .home-details-info {
-    font-size: 16px;
-    margin-bottom: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .home-details-link {
-    display: block;
-    margin-top: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #007BFF;
-    /* Link color */
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #007bff;
+  /* Link color */
 }
 
 .home-details-link:hover {
-    color: #0056b3;
-    /* Hover color */
+  color: #6239d3;
+  /* Hover color */
 }
