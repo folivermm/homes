@@ -65,14 +65,14 @@ npm start
 
 ## Achievements
 
-    Developed a full-stack web application with features for listing, sorting, viewing, creating, updating, and deleting home listings.
+- Developed a full-stack web application with features for listing, sorting, viewing, creating, updating, and deleting home listings.
 
-    Implemented middleware to prevent the deletion of the first 8 homes for data safety.
+- Implemented middleware to prevent the deletion of the first 8 homes for data safety.
 
-    Utilized React for the frontend and Express.js with PostgreSQL for the backend, ensuring a robust and efficient application.
+- Utilized React for the frontend and Express.js with PostgreSQL for the backend, ensuring a robust and efficient application.
 
-    Enabled a seamless user experience with React Router for navigation.
+- Enabled a seamless user experience with React Router for navigation.
 
-    Incorporated fetch for making API requests, making the application more responsive.
+- Incorporated fetch for making API requests, making the application more responsive.
 
-    Achieved a user-friendly design with smooth navigation and clear information display.
+- Achieved a user-friendly design with smooth navigation and clear information display.
