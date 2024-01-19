@@ -123,16 +123,16 @@ export function updateHome(id, home) {
         });
 }
 
-// /**
-//  * DELETE request to delete a home by ID
-//  * @param {string} id - The ID of the home to delete.
-//  * @returns {Promise} - A promise that resolves when the deletion is successful.
-//  */
-// export function deleteHome(id) {
-//     const url = `${API_BASE_URL}/homes/${id}`;
-//     const options = {
-//         method: "DELETE",
-//         headers,
-//     };
-//     return fetchJson(url, options);
-// }
+/**
+ * DELETE request to delete a home by ID
+ * @param {string} id - The ID of the home to delete.
+ * @returns {Promise} - A promise that resolves when the deletion is successful.
+ */
+export function deleteHome(id) {
+    const url = `${API_BASE_URL}/homes/${id}`;
+    const options = {
+        method: "DELETE",
+        headers,
+    };
+    return fetchJson(url, options);
+}

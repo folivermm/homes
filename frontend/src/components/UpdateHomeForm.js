@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { updateHome } from '../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
+import DeleteHome from './DeleteHome';
 import './UpdateHomeForm.css'
 
 function UpdateHomeForm({ homes, realtors }) {
@@ -12,15 +13,17 @@ function UpdateHomeForm({ homes, realtors }) {
 
     // Find the specific home to update based on the id from the route parameters
     useEffect(() => {
-        console.log('Homes prop inside UpdateHomeForm:', homes)
-        const foundHome = homes.find((home) => home.id === parseInt(id));
-        console.log('After find:', foundHome);
-        if (foundHome) {
-            console.log('Found Home:', foundHome)
-            setUpdatedHome(foundHome);
-            console.log('Updated Home:', updatedHome); // Log the updatedHome after state update
+        if (Array.isArray(homes)) {
+            console.log('Homes prop inside UpdateHomeForm:', homes)
+            const foundHome = homes.find((home) => home.id === parseInt(id));
+            console.log('After find:', foundHome);
+            if (foundHome) {
+                console.log('Found Home:', foundHome)
+                setUpdatedHome(foundHome);
+                console.log('Updated Home:', updatedHome); // Log the updatedHome after state update
+            }
         }
-    }, []);
+    }, [homes, id]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -44,6 +47,7 @@ function UpdateHomeForm({ homes, realtors }) {
             console.error('Error updating home:', error);
         }
     };
+
 
     const handleGoToHomePage = () => {
         navigate('/'); // Redirect to the home page
@@ -129,12 +133,15 @@ function UpdateHomeForm({ homes, realtors }) {
                     ))}
                 </select>
             </div>
-            <button type="submit" className="btn btn-primary">
-                Update Home
-            </button>
-            <button onClick={handleGoToHomePage} className="btn btn-primary" style={{ margin: '1rem' }}>
-                Return Home
-            </button>
+            <div className="button-container">
+                <button onClick={handleGoToHomePage} className="btn btn-primary">
+                    Return Home
+                </button>
+                <button type="submit" className="btn btn-primary">
+                    Update Home
+                </button>
+                <DeleteHome id={id} onDelete={() => navigate('/')} className="btn-red" />
+            </div>
         </form>
     );
 }

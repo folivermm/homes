@@ -52,8 +52,14 @@ function App() {
             )
             }
           />
-          <Route path="/:id" element={<HomeDetails getHome={getHomeWithRealtor} />} />
-          <Route path="/add" element={<AddHomeForm onHomeAdded={handleHomeAdded} realtors={realtors} />} />
+          <Route
+            path="/:id"
+            element={<HomeDetails getHome={getHomeWithRealtor} />}
+          />
+          <Route
+            path="/add"
+            element={<AddHomeForm onHomeAdded={handleHomeAdded} realtors={realtors} />}
+          />
           <Route
             path="/updateHome/:id"
             element={<UpdateHomeForm homes={homes} realtors={realtors} />}

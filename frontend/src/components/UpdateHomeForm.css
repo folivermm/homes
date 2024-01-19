@@ -18,3 +18,21 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2rem; /* Add space between form and buttons */
+}
+
+/* .button-container button {
+  margin-right: 10px;
+} */
+
+.btn-red {
+  background-color: red !important;
+  color: white !important;
+  &:hover {
+    background-color: darkred !important;
+  }
+}

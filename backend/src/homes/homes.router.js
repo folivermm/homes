@@ -13,9 +13,9 @@ router
 
 router
     .route("/:id")
-    .get(controller.homeExists, controller.read) // Use the homeExists middleware here
+    .get(controller.homeExists, controller.read)
     .put(controller.update)
+    .delete(controller.remove)
     .all(methodNotAllowed);
-
 
 module.exports = router;

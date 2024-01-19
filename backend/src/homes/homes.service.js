@@ -100,11 +100,19 @@ function update(id, updatedData) {
 }
 
 
+function remove(id) {
+    return knex("homes")
+        .where({ id })
+        .del()
+        .returning("*");
+}
+
 module.exports = {
     list,
     readHomeWithRealtor,
     create,
     update,
+    remove,
 };
 
 

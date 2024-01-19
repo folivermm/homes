@@ -38,12 +38,46 @@ async function update(req, res) {
 }
 
 
+async function canDeleteHome(req, res, next) {
+    const { id } = req.params;
+    const homes = await service.list(); // Await the list function
+
+    if (!id || isNaN(id) || parseInt(id) <= 8) {
+        return next({ status: 400, message: 'Cannot delete the first 9 homes.' });
+    }
+
+    const home = homes.find((h) => h.id === parseInt(id));
+    if (!home) {
+        return next({ status: 404, message: `Home with ID ${id} not found.` });
+    }
+
+    next();
+}
+
+// Delete a specific home
+async function remove(req, res) {
+    const { id } = req.params;
+    await service.remove(id);
+    res.sendStatus(204);
+}
+// async function remove(req, res) {
+//     const { id } = req.params;
+//     const { homeWithRealtor } = res.locals; 
+//     if (!homeWithRealtor) {
+//         return res.status(404).json({ message: `Home with ID ${id} not found.` });
+//     }
+//     await service.remove(id);
+//     res.sendStatus(204); 
+// }
+
+
 module.exports = {
     list: asyncErrorBoundary(list),
     read: asyncErrorBoundary(read),
     homeExists: asyncErrorBoundary(homeExists), // Include the homeExists middleware
     create: asyncErrorBoundary(create),
     update: asyncErrorBoundary(update),
+    remove: [asyncErrorBoundary(canDeleteHome), asyncErrorBoundary(remove)],
 };
 
 

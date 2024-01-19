@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { formatDateTime } from '../utils/api';
 import './HomeList.css';
 import UpdateHomeForm from './UpdateHomeForm';
+// import DeleteHome from './DeleteHome';
+
 
 function HomeList({ homes }) {
     const [editingHomeId, setEditingHomeId] = useState(null);
@@ -36,16 +38,29 @@ function HomeList({ homes }) {
         navigate(`/updateHome/${homeId}`);
     };
 
+    // const handleDeleteClick = (homeId) => {
+    //     const confirmDelete = window.confirm('Are you sure you want to delete this home?');
+    //     if (confirmDelete) {
+    //         setEditingHomeId(homeId); // Set editingHomeId to the id of the home to be deleted
+    //     }
+    // };
+
     const handleUpdate = (updatedHome) => {
-        // Update the list of homes with the updated data
-        setSortedHomes((prevHomes) =>
-            prevHomes.map((home) =>
-                home.id === updatedHome.id ? updatedHome : home
-            )
-        );
+        if (editingHomeId === updatedHome.id) {
+            // Remove the home with the matching id from sortedHomes
+            setSortedHomes((prevHomes) =>
+                prevHomes.filter((home) => home.id !== updatedHome.id)
+            );
+        } else {
+            // Update the list of homes with the updated data
+            setSortedHomes((prevHomes) =>
+                prevHomes.map((home) =>
+                    home.id === updatedHome.id ? updatedHome : home
+                )
+            );
+        }
         setEditingHomeId(null);
     };
-
     // console.log('Homes Prop:', homes);
     // console.log('Sorted Homes:', sortedHomes);
     return (
@@ -89,6 +104,7 @@ function HomeList({ homes }) {
                             >
                                 Update
                             </button>
+                            {/* <DeleteHome id={home.id} onDelete={() => handleDeleteClick(home.id)} /> */}
                             {editingHomeId === home.id && (
                                 <UpdateHomeForm home={home} onUpdate={handleUpdate} />
                             )}
