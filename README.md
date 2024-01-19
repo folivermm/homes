@@ -44,22 +44,22 @@ To run the Homes App locally, follow these steps:
    cd homes-app
    Install dependencies for both the frontend and backend:
 
-# Inside the root directory
+### Inside the root directory
 
 npm install
 
-# Inside the "client" directory
+### Inside the "client" directory
 
 cd client
 npm install
 
 Create a PostgreSQL database and set up the necessary environment variables. Rename them to .env and configure the database connection. Migrate and seed.
 
-# Start the backend server:
+### Start the backend server:
 
 npm start run:dev
 
-# Start the React development server for the frontend:
+### Start the React development server for the frontend:
 
 npm start
 
